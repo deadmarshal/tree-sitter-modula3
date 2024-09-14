@@ -421,6 +421,7 @@ module.exports = grammar({
         seq("\\", "f"),
         seq("\\", "\\"),
         seq("\\", "\\"),
+        seq("\\", "'"),
         seq("\\", $.DQUOTE),
         seq("\\", $.OctalDigit, $.OctalDigit, $.OctalDigit),
       ),
@@ -436,12 +437,12 @@ module.exports = grammar({
         optional(choice("+", "-")),
         repeat1($.Digit),
       ),
-    PrintingChar: ($) => choice($.Letter, $.Digit),
+    PrintingChar: ($) => choice($.Letter, $.Digit, $.OtherChar),
     HexDigit: ($) => choice($.Digit, /[a-fA-F]/),
-    Digit: () => /[0-9]/,
-    OctalDigit: () => /[0-7]/,
-    Letter: () => /[a-zA-Z]/,
-    OtherChar: () =>
+    Digit: (_) => /[0-9]/,
+    OctalDigit: (_) => /[0-7]/,
+    Letter: (_) => /[a-zA-Z]/,
+    OtherChar: (_) =>
       choice(
         " ",
         "!",
@@ -470,11 +471,12 @@ module.exports = grammar({
         "_",
         "`",
         "{",
+        "|",
         "}",
-        " ",
+        // $.ExtendedChar
       ),
     // ExtendedChar: (_) =>
-    DQUOTE: () => '"',
+    DQUOTE: (_) => '"',
     // Keywords:
     AND: (_) => "AND",
     ANY: (_) => "ANY",

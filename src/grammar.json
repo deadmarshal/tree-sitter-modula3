@@ -3556,6 +3556,19 @@
               "value": "\\"
             },
             {
+              "type": "STRING",
+              "value": "'"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\\"
+            },
+            {
               "type": "SYMBOL",
               "name": "DQUOTE"
             }
@@ -3730,6 +3743,10 @@
         {
           "type": "SYMBOL",
           "name": "Digit"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "OtherChar"
         }
       ]
     },
@@ -3871,11 +3888,11 @@
         },
         {
           "type": "STRING",
-          "value": "}"
+          "value": "|"
         },
         {
           "type": "STRING",
-          "value": " "
+          "value": "}"
         }
       ]
     },
