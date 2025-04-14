@@ -1,73 +1,12 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 // https://www.cs.purdue.edu/homes/hosking/m3/reference/syntax.html
+// note:
+// make rules that can be empty as repeat1 and make it optional in
+// the parent rule (rule that is using it!)
 
 module.exports = grammar({
   name: "Modula3",
-  // word: ($) =>
-  //   choice(
-  //     $.AND,
-  //     $.ANY,
-  //     $.ARRAY,
-  //     $.AS,
-  //     $.BEGIN,
-  //     $.BITS,
-  //     $.BRANDED,
-  //     $.BY,
-  //     $.CASE,
-  //     $.CONST,
-  //     $.DIV,
-  //     $.DO,
-  //     $.ELSE,
-  //     $.ELSIF,
-  //     $.END,
-  //     $.EVAL,
-  //     $.EXCEPT,
-  //     $.EXCEPTION,
-  //     $.EXIT,
-  //     $.EXPORTS,
-  //     $.FINALLY,
-  //     $.FOR,
-  //     $.FROM,
-  //     $.GENERIC,
-  //     $.IF,
-  //     $.IMPORT,
-  //     $.IN,
-  //     $.INTERFACE,
-  //     $.LOCK,
-  //     $.LOOP,
-  //     $.METHODS,
-  //     $.MOD,
-  //     $.MODULE,
-  //     $.NOT,
-  //     $.OBJECT,
-  //     $.OF,
-  //     $.OR,
-  //     $.OVERRIDES,
-  //     $.PROCEDURE,
-  //     $.RAISE,
-  //     $.RAISES,
-  //     $.READONLY,
-  //     $.RECORD,
-  //     $.REF,
-  //     $.REPEAT,
-  //     $.RETURN,
-  //     $.REVEAL,
-  //     $.ROOT,
-  //     $.SET,
-  //     $.THEN,
-  //     $.TO,
-  //     $.TRY,
-  //     $.TYPE,
-  //     $.TYPECASE,
-  //     $.UNSAFE,
-  //     $.UNTIL,
-  //     $.UNTRACED,
-  //     $.VALUE,
-  //     $.VAR,
-  //     $.WHILE,
-  //     $.WITH,
-
   rules: {
     // Compilation unit productions:
     Compilation: ($) =>
@@ -166,13 +105,16 @@ module.exports = grammar({
     Signature: ($) =>
       seq(
         "(",
-        $.Formals,
+        optional($.Formals),
         ")",
         optional(seq(":", $.Type)),
         optional(seq($.RAISES, $.Raises)),
       ),
     Formals: ($) =>
-      repeat(seq($.Formal, repeat(seq(";", $.Formal)), optional(";"))),
+    choice(
+      seq("(", ")"),
+      seq("(", $.Formal, repeat(seq(",", $.Formal)), ")"),
+    ),
     Formal: ($) =>
       seq(
         optional($.Mode),
@@ -208,7 +150,10 @@ module.exports = grammar({
         $.WhileSt,
         $.WithSt,
       ),
-    S: ($) => repeat(seq($.Stmt, repeat(seq(";", $.Stmt)), optional(";"))),
+    S: ($) =>
+    choice(
+      seq($.Stmt, repeat(seq(";", $.Stmt)), optional(";")),
+    ),
     AssignSt: ($) => seq($.Expr, ":=", $.Expr),
     CallSt: ($) =>
       seq(
@@ -344,16 +289,20 @@ module.exports = grammar({
     SubrangeType: ($) => seq("[", $.ConstExpr, "..", "]"),
     Brand: ($) => seq($.BRANDED, optional($.ConstExpr)),
     Fields: ($) =>
-      repeat(seq($.Field, repeat(seq(";", $.Field)), optional(";"))),
+    choice(
+      seq($.Field,
+	  repeat(seq(";", $.Field)),
+	  optional(";"))
+    ),
     Field: ($) =>
       seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))),
     Methods: ($) =>
-      repeat(
+      repeat1(
         seq($.Method, repeat(optional(seq(";", $.Method))), optional(";")),
       ),
     Method: ($) => seq($.Id, $.Signature, optional(seq(":=", $.ConstExpr))),
     Overrides: ($) =>
-      optional(seq($.Override, repeat(seq(";", $.Override)), optional(";"))),
+      choice(seq($.Override, repeat(seq(";", $.Override)), optional(";"))),
     Override: ($) => seq($.Id, ":=", $.ConstExpr),
 
     // Expression productions:
