@@ -1,46 +1,27 @@
 // swift-tools-version:5.3
+
+import Foundation
 import PackageDescription
 
+var sources = ["src/parser.c"]
+if FileManager.default.fileExists(atPath: "src/scanner.c") {
+    sources.append("src/scanner.c")
+}
+
 let package = Package(
-    name: "TreeSitterYourLanguageName",
+    name: "TreeSitterModula3",
     products: [
-        .library(name: "TreeSitterYourLanguageName", targets: ["TreeSitterYourLanguageName"]),
+        .library(name: "TreeSitterModula3", targets: ["TreeSitterModula3"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ChimeHQ/SwiftTreeSitter", from: "0.8.0"),
+        .package(url: "https://github.com/tree-sitter/swift-tree-sitter", from: "0.8.0"),
     ],
     targets: [
         .target(
-            name: "TreeSitterYourLanguageName",
+            name: "TreeSitterModula3",
             dependencies: [],
             path: ".",
-            exclude: [
-                "Cargo.toml",
-                "Makefile",
-                "binding.gyp",
-                "bindings/c",
-                "bindings/go",
-                "bindings/node",
-                "bindings/python",
-                "bindings/rust",
-                "prebuilds",
-                "grammar.js",
-                "package.json",
-                "package-lock.json",
-                "pyproject.toml",
-                "setup.py",
-                "test",
-                "examples",
-                ".editorconfig",
-                ".github",
-                ".gitignore",
-                ".gitattributes",
-                ".gitmodules",
-            ],
-            sources: [
-                "src/parser.c",
-                // NOTE: if your language has an external scanner, add it here.
-            ],
+            sources: sources,
             resources: [
                 .copy("queries")
             ],
@@ -48,12 +29,12 @@ let package = Package(
             cSettings: [.headerSearchPath("src")]
         ),
         .testTarget(
-            name: "TreeSitterYourLanguageNameTests",
+            name: "TreeSitterModula3Tests",
             dependencies: [
                 "SwiftTreeSitter",
-                "TreeSitterYourLanguageName",
+                "TreeSitterModula3",
             ],
-            path: "bindings/swift/TreeSitterYourLanguageNameTests"
+            path: "bindings/swift/TreeSitterModula3Tests"
         )
     ],
     cLanguageStandard: .c11

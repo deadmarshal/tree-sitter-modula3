@@ -1,0 +1,43 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "modula3",
+      "camelcase": "Modula3",
+      "title": "Modula-3",
+      "scope": "source.modula3",
+      "file-types": [
+        ".m3",
+        ".mg",
+        ".ig",
+        ".i3"
+      ],
+      "injection-regex": "^modula3$",
+      "class-name": "TreeSitterModula3"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Modula-3 tree-sitter grammar",
+    "authors": [
+      {
+        "name": "Ali Moradi",
+        "email": "adeadmarshal@gmail.com",
+        "url": "https://deadmarshal.blogspot.com/"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/deadmarshal/tree-sitter-modula3"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

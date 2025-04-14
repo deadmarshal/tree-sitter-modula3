@@ -1,5 +1,5 @@
-module github.com/tree-sitter/tree-sitter-your_language_name
+module github.com/deadmarshal/tree-sitter-modula3
 
-go 1.23
+go 1.22
 
-require github.com/tree-sitter/go-tree-sitter v0.23
+require github.com/tree-sitter/go-tree-sitter v0.24.0

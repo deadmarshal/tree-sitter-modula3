@@ -1,4 +1,4 @@
-"""YourLanguageName grammar for tree-sitter"""
+"""Modula-3 tree-sitter grammar"""
 
 from importlib.resources import files as _files
 
