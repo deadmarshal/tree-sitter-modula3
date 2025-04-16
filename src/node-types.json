@@ -1,0 +1,58 @@
+[
+  {
+    "type": "Id",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Digit",
+          "named": true
+        },
+        {
+          "type": "Letter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "IdList",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "Digit",
+    "named": true
+  },
+  {
+    "type": "Letter",
+    "named": true
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "extra": true
+  }
+]
