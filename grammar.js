@@ -190,7 +190,8 @@ module.exports = grammar({
       ),
     LockSt: ($) => seq($.kLock, $.Expr, $.kDo, $.kEnd),
     LoopSt: ($) => seq($.kLoop, $.S, $.kEnd),
-    RaiseSt: ($) => seq($.kRaise, $.QualId, optional(seq("(", $.Expr, ")"))),
+    RaiseSt: ($) =>
+      prec.left(seq($.kRaise, $.QualId, optional(seq("(", $.Expr, ")")))),
     RepeatSt: ($) => seq($.kRepeat, $.S, $.kUntil, $.Expr),
     ReturnSt: ($) => prec.right(seq($.kReturn, optional($.Expr))),
     TCaseSt: ($) =>
@@ -282,9 +283,13 @@ module.exports = grammar({
     SubrangeType: ($) => seq("[", $.ConstExpr, "..", $.ConstExpr, "]"),
     Brand: ($) => seq($.kBranded, $.ConstExpr),
     Fields: ($) =>
-      repeat1(seq($.Field, repeat(seq(";", $.Field)), optional(";"))), // BUGGY?, make this optional in methods
+      prec.left(
+        repeat1(seq($.Field, repeat(seq(";", $.Field)), optional(";"))),
+      ), // BUGGY?, make this optional in methods
     Field: ($) =>
-      seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))), // BUGGY?
+      prec.left(
+        seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))),
+      ), // BUGGY?
     Methods: ($) =>
       repeat1(seq($.Method, repeat(seq(";", $.Method)), optional(";"))), // make this optional in object
     Method: ($) => seq($.Id, $.Signature, optional(seq(":=", $.ConstExpr))),
@@ -347,7 +352,8 @@ module.exports = grammar({
     TypeName: ($) => choice($.QualId, $.kRoot, seq($.kUntraced, $.kRoot)),
 
     // Token Productions:
-    Id: ($) => seq($.Letter, optional(choice($.Letter, $.Digit, "_"))),
+    Id: ($) =>
+      prec.left(seq($.Letter, optional(choice($.Letter, $.Digit, "_")))),
     Literal: ($) => choice($.Number, $.CharLiteral, $.TextLiteral),
     CharLiteral: ($) =>
       seq("'", choice($.PrintingChar, $.Escape, $.DQUOTE), "'"),
@@ -367,10 +373,12 @@ module.exports = grammar({
         ),
       ),
     Number: ($) =>
-      choice(
-        repeat1($.Digit),
-        seq(repeat1($.Digit), "_", repeat1($.HexDigit)),
-        seq(repeat1($.Digit), ".", repeat1($.Digit), optional($.Exp)),
+      prec.left(
+        choice(
+          repeat1($.Digit),
+          seq(repeat1($.Digit), "_", repeat1($.HexDigit)),
+          seq(repeat1($.Digit), ".", repeat1($.Digit), optional($.Exp)),
+        ),
       ),
     Exp: ($) =>
       seq(
