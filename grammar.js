@@ -1,6 +1,7 @@
 // M3 Syntax: https://www.cs.purdue.edu/homes/hosking/m3/reference/syntax.html
 // Operator Precedence: https://www.cs.purdue.edu/homes/hosking/m3/reference/opsyntax.html
 // Operator Precedence: https://modula3.elegosoft.com/cm3/doc/tutorial/m3/m3_56.html
+
 module.exports = grammar({
   name: "Modula3",
   extras: ($) => [$.comment, /\s/],
@@ -283,13 +284,9 @@ module.exports = grammar({
     SubrangeType: ($) => seq("[", $.ConstExpr, "..", $.ConstExpr, "]"),
     Brand: ($) => seq($.kBranded, $.ConstExpr),
     Fields: ($) =>
-      prec.left(
-        repeat1(seq($.Field, repeat(seq(";", $.Field)), optional(";"))),
-      ), // BUGGY?, make this optional in methods
+      prec.left(seq($.Field, repeat(seq(";", $.Field)), optional(";"))), // BUGGY?, make this optional in methods
     Field: ($) =>
-      prec.left(
-        seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))),
-      ), // BUGGY?
+      seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))), // BUGGY?
     Methods: ($) =>
       repeat1(seq($.Method, repeat(seq(";", $.Method)), optional(";"))), // make this optional in object
     Method: ($) => seq($.Id, $.Signature, optional(seq(":=", $.ConstExpr))),
@@ -339,12 +336,12 @@ module.exports = grammar({
           seq("{", optional(choice($.SetCons, $.RecordCons, $.ArrayCons)), "}"),
         ),
       ),
-    SetCons: ($) => seq($.SetElt, optional(seq(",", $.SetElt))),
+    SetCons: ($) => seq($.SetElt, repeat(seq(",", $.SetElt))),
     SetElt: ($) => seq($.Expr, optional(seq("..", $.Expr))),
-    RecordCons: ($) => seq($.RecordElt, optional(seq(",", $.RecordElt))),
+    RecordCons: ($) => seq($.RecordElt, repeat(seq(",", $.RecordElt))),
     RecordElt: ($) => seq(optional(seq($.Id, ":=")), $.Expr),
     ArrayCons: ($) =>
-      seq($.Expr, optional(seq(",", $.Expr)), optional(seq(",", ".."))),
+      seq($.Expr, repeat(seq(",", $.Expr)), optional(seq(",", ".."))),
 
     // Miscellaneous Productions:
     IdList: ($) => seq($.Id, repeat1(seq(",", $.Id))),
