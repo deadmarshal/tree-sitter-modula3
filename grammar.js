@@ -1,3 +1,6 @@
+// M3 Syntax: https://www.cs.purdue.edu/homes/hosking/m3/reference/syntax.html
+// Operator Precedence: https://www.cs.purdue.edu/homes/hosking/m3/reference/opsyntax.html
+// Operator Precedence: https://modula3.elegosoft.com/cm3/doc/tutorial/m3/m3_56.html
 module.exports = grammar({
   name: "Modula3",
   extras: ($) => [$.comment, /\s/],
@@ -189,7 +192,7 @@ module.exports = grammar({
     LoopSt: ($) => seq($.kLoop, $.S, $.kEnd),
     RaiseSt: ($) => seq($.kRaise, $.QualId, optional(seq("(", $.Expr, ")"))),
     RepeatSt: ($) => seq($.kRepeat, $.S, $.kUntil, $.Expr),
-    ReturnSt: ($) => seq($.kReturn, optional($.Expr)),
+    ReturnSt: ($) => prec.right(seq($.kReturn, optional($.Expr))),
     TCaseSt: ($) =>
       seq(
         $.kTypecase,
@@ -291,17 +294,17 @@ module.exports = grammar({
 
     // Expression Productions:
     ConstExpr: ($) => $.Expr,
-    Expr: ($) => seq($.E1, repeat1(seq($.kOr, $.E1))),
-    E1: ($) => seq($.E2, repeat1(seq($.kAnd, $.E2))),
-    E2: ($) => seq(optional($.kNot), $.E3),
+    Expr: ($) => seq($.E1, repeat1(seq(prec.left(1, $.kOr), $.E1))),
+    E1: ($) => seq($.E2, repeat1(seq(prec.left(2, $.kAnd), $.E2))),
+    E2: ($) => seq(prec.left(3, optional($.kNot)), $.E3),
     E3: ($) => seq($.E4, repeat1(seq($.Relop, $.E4))),
     E4: ($) => seq($.E5, repeat1(seq($.Addop, $.E5))),
     E5: ($) => seq($.E6, repeat1(seq($.Mulop, $.E6))),
-    E6: ($) => seq(optional(choice("+", "-")), $.E7),
+    E6: ($) => seq(prec.left(7, optional(choice("+", "-"))), $.E7),
     E7: ($) => seq($.E8, optional($.Selector)),
     E8: ($) =>
       choice(
-        $.Id,
+        prec.left(1, $.Id),
         $.Number,
         $.CharLiteral,
         $.TextLiteral,
@@ -309,23 +312,27 @@ module.exports = grammar({
         seq("(", $.Expr, ")"),
       ),
 
-    Relop: ($) => choice("=", "#", "<", "<=", ">", ">=", $.kIn),
-    Addop: ($) => choice("+", "-", "&"),
-    Mulop: ($) => choice("*", "/", $.kDiv, $.kMod),
+    Relop: ($) => prec.left(4, choice("=", "#", "<", "<=", ">", ">=", $.kIn)),
+    Addop: ($) => prec.left(5, choice("+", "-", "&")),
+    Mulop: ($) => prec.left(6, choice("*", "/", $.kDiv, $.kMod)),
     Selector: ($) =>
       choice(
-        "^",
-        seq(".", $.Id),
-        seq("[", $.Expr, optional(seq(",", $.Expr)), "]"),
-        seq("(", optional(seq($.Actual, optional(seq(",", $.Actual)))), ")"),
+        prec.left(8, "^"),
+        prec.left(10, seq(".", $.Id)),
+        prec.left(9, seq("[", $.Expr, optional(seq(",", $.Expr)), "]")),
+        prec.left(
+          9,
+          seq("(", optional(seq($.Actual, optional(seq(",", $.Actual)))), ")"),
+        ),
       ),
 
     Constructor: ($) =>
       seq(
         $.Type,
-        "{",
-        optional(choice($.SetCons, $.RecordCons, $.ArrayCons)),
-        "}",
+        prec.left(
+          9,
+          seq("{", optional(choice($.SetCons, $.RecordCons, $.ArrayCons)), "}"),
+        ),
       ),
     SetCons: ($) => seq($.SetElt, optional(seq(",", $.SetElt))),
     SetElt: ($) => seq($.Expr, optional(seq("..", $.Expr))),
@@ -334,11 +341,9 @@ module.exports = grammar({
     ArrayCons: ($) =>
       seq($.Expr, optional(seq(",", $.Expr)), optional(seq(",", ".."))),
 
-    // Actual: ($) => seq(choice($.Type, optional(seq($.Id, ":=")), $.Expr)),
-
     // Miscellaneous Productions:
     IdList: ($) => seq($.Id, repeat1(seq(",", $.Id))),
-    QualId: ($) => seq($.Id, optional(seq(".", $.Id))),
+    QualId: ($) => prec.left(2, seq($.Id, optional(seq(".", $.Id)))),
     TypeName: ($) => choice($.QualId, $.kRoot, seq($.kUntraced, $.kRoot)),
 
     // Token Productions:
