@@ -1,5 +1,996 @@
 [
   {
+    "type": "Actual",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Addop",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ArrayCons",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ArrayType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "kArray",
+          "named": true
+        },
+        {
+          "type": "kOf",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "AsImport",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ImportItem",
+          "named": true
+        },
+        {
+          "type": "kImport",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "AssignSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Binding",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Decl",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kBegin",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Brand",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "kBranded",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CallSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Actual",
+          "named": true
+        },
+        {
+          "type": "Expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Case",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Labels",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CaseSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Case",
+          "named": true
+        },
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kCase",
+          "named": true
+        },
+        {
+          "type": "kElse",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kOf",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "CharLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "DQUOTE",
+          "named": true
+        },
+        {
+          "type": "Escape",
+          "named": true
+        },
+        {
+          "type": "PrintingChar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Compilation",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "GenInt",
+          "named": true
+        },
+        {
+          "type": "GenMod",
+          "named": true
+        },
+        {
+          "type": "Interface",
+          "named": true
+        },
+        {
+          "type": "Module",
+          "named": true
+        },
+        {
+          "type": "kUnsafe",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConstDecl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ConstExpr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Constructor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ArrayCons",
+          "named": true
+        },
+        {
+          "type": "RecordCons",
+          "named": true
+        },
+        {
+          "type": "SetCons",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Block",
+          "named": true
+        },
+        {
+          "type": "ConstDecl",
+          "named": true
+        },
+        {
+          "type": "ExceptionDecl",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "ProcedureHead",
+          "named": true
+        },
+        {
+          "type": "QualId",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "TypeDecl",
+          "named": true
+        },
+        {
+          "type": "VariableDecl",
+          "named": true
+        },
+        {
+          "type": "kConst",
+          "named": true
+        },
+        {
+          "type": "kException",
+          "named": true
+        },
+        {
+          "type": "kReveal",
+          "named": true
+        },
+        {
+          "type": "kType",
+          "named": true
+        },
+        {
+          "type": "kVar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "E2",
+          "named": true
+        },
+        {
+          "type": "kAnd",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "E3",
+          "named": true
+        },
+        {
+          "type": "kNot",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E3",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "E4",
+          "named": true
+        },
+        {
+          "type": "Relop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E4",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Addop",
+          "named": true
+        },
+        {
+          "type": "E5",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E5",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "E6",
+          "named": true
+        },
+        {
+          "type": "Mulop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E6",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "E7",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E7",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "E8",
+          "named": true
+        },
+        {
+          "type": "Selector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "E8",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CharLiteral",
+          "named": true
+        },
+        {
+          "type": "Constructor",
+          "named": true
+        },
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Number",
+          "named": true
+        },
+        {
+          "type": "TextLiteral",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EnumType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "IdList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Escape",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "DQUOTE",
+          "named": true
+        },
+        {
+          "type": "OctalDigit",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "EvalSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "kEval",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ExceptionDecl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ExitSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "kExit",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Exp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Digit",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "E1",
+          "named": true
+        },
+        {
+          "type": "kOr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "IdList",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Fields",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ForSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kBy",
+          "named": true
+        },
+        {
+          "type": "kDo",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kFor",
+          "named": true
+        },
+        {
+          "type": "kTo",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Formal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "IdList",
+          "named": true
+        },
+        {
+          "type": "Mode",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Formals",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Formal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "FromImport",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "IdList",
+          "named": true
+        },
+        {
+          "type": "kFrom",
+          "named": true
+        },
+        {
+          "type": "kImport",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "GenActls",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "IdList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "GenFmls",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "IdList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "GenInt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Decl",
+          "named": true
+        },
+        {
+          "type": "GenFmls",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Import",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kGeneric",
+          "named": true
+        },
+        {
+          "type": "kInterface",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "GenMod",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Block",
+          "named": true
+        },
+        {
+          "type": "GenFmls",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Import",
+          "named": true
+        },
+        {
+          "type": "kGeneric",
+          "named": true
+        },
+        {
+          "type": "kModule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Handler",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "QualId",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "Id",
     "named": true,
     "fields": {},
@@ -21,7 +1012,6 @@
   {
     "type": "IdList",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -35,16 +1025,1383 @@
     }
   },
   {
+    "type": "IfSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kElse",
+          "named": true
+        },
+        {
+          "type": "kElsif",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kIf",
+          "named": true
+        },
+        {
+          "type": "kThen",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Import",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AsImport",
+          "named": true
+        },
+        {
+          "type": "FromImport",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ImportItem",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "kAs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Interface",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Decl",
+          "named": true
+        },
+        {
+          "type": "GenActls",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Import",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kInterface",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Labels",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "LockSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "kDo",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kLock",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "LoopSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kLoop",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Method",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Methods",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Method",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Mode",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "kReadonly",
+          "named": true
+        },
+        {
+          "type": "kValue",
+          "named": true
+        },
+        {
+          "type": "kVar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Module",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Block",
+          "named": true
+        },
+        {
+          "type": "GenActls",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "IdList",
+          "named": true
+        },
+        {
+          "type": "Import",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kExports",
+          "named": true
+        },
+        {
+          "type": "kModule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Mulop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "kDiv",
+          "named": true
+        },
+        {
+          "type": "kMod",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Digit",
+          "named": true
+        },
+        {
+          "type": "Exp",
+          "named": true
+        },
+        {
+          "type": "HexDigit",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ObjectType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Brand",
+          "named": true
+        },
+        {
+          "type": "Fields",
+          "named": true
+        },
+        {
+          "type": "Methods",
+          "named": true
+        },
+        {
+          "type": "ObjectType",
+          "named": true
+        },
+        {
+          "type": "Overrides",
+          "named": true
+        },
+        {
+          "type": "TypeName",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kMethods",
+          "named": true
+        },
+        {
+          "type": "kObject",
+          "named": true
+        },
+        {
+          "type": "kOverrides",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Override",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Overrides",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Override",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PackedType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "kBits",
+          "named": true
+        },
+        {
+          "type": "kFor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PrintingChar",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "Digit",
+          "named": true
+        },
+        {
+          "type": "Letter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ProcedureHead",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Signature",
+          "named": true
+        },
+        {
+          "type": "kProcedure",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ProcedureType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Signature",
+          "named": true
+        },
+        {
+          "type": "kProcedure",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "QualId",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RaiseSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "QualId",
+          "named": true
+        },
+        {
+          "type": "kRaise",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Raises",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "QualId",
+          "named": true
+        },
+        {
+          "type": "kAny",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RecordCons",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "RecordElt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RecordElt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RecordType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Fields",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kRecord",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RefType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Brand",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "kRef",
+          "named": true
+        },
+        {
+          "type": "kUntraced",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Relop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "kIn",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RepeatSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kRepeat",
+          "named": true
+        },
+        {
+          "type": "kUntil",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ReturnSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "kReturn",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "S",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Stmt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Selector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "Actual",
+          "named": true
+        },
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "Id",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SetCons",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "SetElt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SetElt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SetType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "kOf",
+          "named": true
+        },
+        {
+          "type": "kSet",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Signature",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "Formals",
+          "named": true
+        },
+        {
+          "type": "Raises",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "kRaises",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AssignSt",
+          "named": true
+        },
+        {
+          "type": "Block",
+          "named": true
+        },
+        {
+          "type": "CallSt",
+          "named": true
+        },
+        {
+          "type": "CaseSt",
+          "named": true
+        },
+        {
+          "type": "EvalSt",
+          "named": true
+        },
+        {
+          "type": "ExitSt",
+          "named": true
+        },
+        {
+          "type": "ForSt",
+          "named": true
+        },
+        {
+          "type": "IfSt",
+          "named": true
+        },
+        {
+          "type": "LockSt",
+          "named": true
+        },
+        {
+          "type": "LoopSt",
+          "named": true
+        },
+        {
+          "type": "RaiseSt",
+          "named": true
+        },
+        {
+          "type": "RepeatSt",
+          "named": true
+        },
+        {
+          "type": "ReturnSt",
+          "named": true
+        },
+        {
+          "type": "TCaseSt",
+          "named": true
+        },
+        {
+          "type": "TryFinSt",
+          "named": true
+        },
+        {
+          "type": "TryXptSt",
+          "named": true
+        },
+        {
+          "type": "WhileSt",
+          "named": true
+        },
+        {
+          "type": "WithSt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "SubrangeType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ConstExpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TCase",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TCaseSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "TCase",
+          "named": true
+        },
+        {
+          "type": "kElse",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kOf",
+          "named": true
+        },
+        {
+          "type": "kTypecase",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TextLiteral",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "DQUOTE",
+          "named": true
+        },
+        {
+          "type": "Escape",
+          "named": true
+        },
+        {
+          "type": "PrintingChar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TryFinSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kFinally",
+          "named": true
+        },
+        {
+          "type": "kTry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TryXptSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Handler",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kElse",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kExcept",
+          "named": true
+        },
+        {
+          "type": "kTry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ArrayType",
+          "named": true
+        },
+        {
+          "type": "EnumType",
+          "named": true
+        },
+        {
+          "type": "ObjectType",
+          "named": true
+        },
+        {
+          "type": "PackedType",
+          "named": true
+        },
+        {
+          "type": "ProcedureType",
+          "named": true
+        },
+        {
+          "type": "RecordType",
+          "named": true
+        },
+        {
+          "type": "RefType",
+          "named": true
+        },
+        {
+          "type": "SetType",
+          "named": true
+        },
+        {
+          "type": "SubrangeType",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        },
+        {
+          "type": "TypeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeDecl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TypeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "QualId",
+          "named": true
+        },
+        {
+          "type": "kRoot",
+          "named": true
+        },
+        {
+          "type": "kUntraced",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "VariableDecl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "IdList",
+          "named": true
+        },
+        {
+          "type": "Type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "WhileSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Expr",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kDo",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kWhile",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "WithSt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Binding",
+          "named": true
+        },
+        {
+          "type": "S",
+          "named": true
+        },
+        {
+          "type": "kDo",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kWith",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "..",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<:",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "D",
+    "named": false
+  },
+  {
+    "type": "DQUOTE",
+    "named": true
   },
   {
     "type": "Digit",
     "named": true
   },
   {
+    "type": "E",
+    "named": false
+  },
+  {
+    "type": "HexDigit",
+    "named": true
+  },
+  {
     "type": "Letter",
     "named": true
+  },
+  {
+    "type": "OctalDigit",
+    "named": true
+  },
+  {
+    "type": "X",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
   },
   {
     "type": "_",
@@ -54,5 +2411,289 @@
     "type": "comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "d",
+    "named": false
+  },
+  {
+    "type": "e",
+    "named": false
+  },
+  {
+    "type": "f",
+    "named": false
+  },
+  {
+    "type": "kAnd",
+    "named": true
+  },
+  {
+    "type": "kAny",
+    "named": true
+  },
+  {
+    "type": "kArray",
+    "named": true
+  },
+  {
+    "type": "kAs",
+    "named": true
+  },
+  {
+    "type": "kBegin",
+    "named": true
+  },
+  {
+    "type": "kBits",
+    "named": true
+  },
+  {
+    "type": "kBranded",
+    "named": true
+  },
+  {
+    "type": "kBy",
+    "named": true
+  },
+  {
+    "type": "kCase",
+    "named": true
+  },
+  {
+    "type": "kConst",
+    "named": true
+  },
+  {
+    "type": "kDiv",
+    "named": true
+  },
+  {
+    "type": "kDo",
+    "named": true
+  },
+  {
+    "type": "kElse",
+    "named": true
+  },
+  {
+    "type": "kElsif",
+    "named": true
+  },
+  {
+    "type": "kEnd",
+    "named": true
+  },
+  {
+    "type": "kEval",
+    "named": true
+  },
+  {
+    "type": "kExcept",
+    "named": true
+  },
+  {
+    "type": "kException",
+    "named": true
+  },
+  {
+    "type": "kExit",
+    "named": true
+  },
+  {
+    "type": "kExports",
+    "named": true
+  },
+  {
+    "type": "kFinally",
+    "named": true
+  },
+  {
+    "type": "kFor",
+    "named": true
+  },
+  {
+    "type": "kFrom",
+    "named": true
+  },
+  {
+    "type": "kGeneric",
+    "named": true
+  },
+  {
+    "type": "kIf",
+    "named": true
+  },
+  {
+    "type": "kImport",
+    "named": true
+  },
+  {
+    "type": "kIn",
+    "named": true
+  },
+  {
+    "type": "kInterface",
+    "named": true
+  },
+  {
+    "type": "kLock",
+    "named": true
+  },
+  {
+    "type": "kLoop",
+    "named": true
+  },
+  {
+    "type": "kMethods",
+    "named": true
+  },
+  {
+    "type": "kMod",
+    "named": true
+  },
+  {
+    "type": "kModule",
+    "named": true
+  },
+  {
+    "type": "kNot",
+    "named": true
+  },
+  {
+    "type": "kObject",
+    "named": true
+  },
+  {
+    "type": "kOf",
+    "named": true
+  },
+  {
+    "type": "kOr",
+    "named": true
+  },
+  {
+    "type": "kOverrides",
+    "named": true
+  },
+  {
+    "type": "kProcedure",
+    "named": true
+  },
+  {
+    "type": "kRaise",
+    "named": true
+  },
+  {
+    "type": "kRaises",
+    "named": true
+  },
+  {
+    "type": "kReadonly",
+    "named": true
+  },
+  {
+    "type": "kRecord",
+    "named": true
+  },
+  {
+    "type": "kRef",
+    "named": true
+  },
+  {
+    "type": "kRepeat",
+    "named": true
+  },
+  {
+    "type": "kReturn",
+    "named": true
+  },
+  {
+    "type": "kReveal",
+    "named": true
+  },
+  {
+    "type": "kRoot",
+    "named": true
+  },
+  {
+    "type": "kSet",
+    "named": true
+  },
+  {
+    "type": "kThen",
+    "named": true
+  },
+  {
+    "type": "kTo",
+    "named": true
+  },
+  {
+    "type": "kTry",
+    "named": true
+  },
+  {
+    "type": "kType",
+    "named": true
+  },
+  {
+    "type": "kTypecase",
+    "named": true
+  },
+  {
+    "type": "kUnsafe",
+    "named": true
+  },
+  {
+    "type": "kUntil",
+    "named": true
+  },
+  {
+    "type": "kUntraced",
+    "named": true
+  },
+  {
+    "type": "kValue",
+    "named": true
+  },
+  {
+    "type": "kVar",
+    "named": true
+  },
+  {
+    "type": "kWhile",
+    "named": true
+  },
+  {
+    "type": "kWith",
+    "named": true
+  },
+  {
+    "type": "n",
+    "named": false
+  },
+  {
+    "type": "r",
+    "named": false
+  },
+  {
+    "type": "t",
+    "named": false
+  },
+  {
+    "type": "x",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]

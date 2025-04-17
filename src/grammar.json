@@ -4419,7 +4419,34 @@
       "value": "\\s"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "SetElt",
+      "RecordElt",
+      "ArrayCons"
+    ],
+    [
+      "Formals"
+    ],
+    [
+      "Methods"
+    ],
+    [
+      "Overrides"
+    ],
+    [
+      "Signature"
+    ],
+    [
+      "E4"
+    ],
+    [
+      "E7"
+    ],
+    [
+      "Exp"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

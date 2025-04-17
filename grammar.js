@@ -5,6 +5,17 @@
 module.exports = grammar({
   name: "Modula3",
   extras: ($) => [$.comment, /\s/],
+  conflicts: ($) => [
+    [$.SetElt, $.RecordElt, $.ArrayCons],
+    [$.Formals],
+    [$.Methods],
+    [$.Overrides],
+    [$.Signature],
+    [$.E4],
+    [$.E7],
+    [$.Exp],
+  ],
+
   rules: {
     // Compilation Unit Productions:
     Compilation: ($) =>
