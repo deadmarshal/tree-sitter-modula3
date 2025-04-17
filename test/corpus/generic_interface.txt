@@ -1,0 +1,22 @@
+==================
+Generic Interface
+==================
+
+GENERIC INTERFACE Something(Elem);
+
+END Something.
+
+---
+(Compilation
+ (kGeneric)
+ (kInterface)
+ (Id)
+ (";")
+ ("(")
+ (Id)
+ (")")
+ (";")
+ (kEnd)
+ (Id)
+ (".")
+ )

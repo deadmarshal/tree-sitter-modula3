@@ -10,6 +10,7 @@ END Something.
 (Compilation
  (kModule)
  (Id)
+ (";")
  (kEnd)
  (Id)
  (".")
