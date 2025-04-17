@@ -40,29 +40,26 @@ module.exports = grammar({
       ),
     ),
     Interface: ($) =>
-    field(
-      "interface",
-      choice(
-        seq(
-          $.kInterface,
-          $.Id,
-          ";",
-          field("import", repeat($.Import)),
-          field("declaration", repeat($.Decl)),
-          $.kEnd,
-          $.Id,
-          ".",
-        ),
-        seq(
-          $.kInterface,
-          $.Id,
-          "=",
-          $.Id,
-          field("generic_actual_parameters", $.GenActls),
-          $.kEnd,
-          $.Id,
-          ".",
-        ),
+    choice(
+      seq(
+        $.kInterface,
+        $.Id,
+        ";",
+        field("import", repeat($.Import)),
+        field("declaration", repeat($.Decl)),
+        $.kEnd,
+        $.Id,
+        ".",
+      ),
+      seq(
+        $.kInterface,
+        $.Id,
+        "=",
+        $.Id,
+        field("generic_actual_parameters", $.GenActls),
+        $.kEnd,
+        $.Id,
+        ".",
       ),
     ),
 
@@ -417,8 +414,8 @@ module.exports = grammar({
     kGeneric: ($) => "GENERIC",
     kIf: ($) => "IF",
     kImport: ($) => "IMPORT",
-    kIn: ($) => "IN",
     kInterface: ($) => "INTERFACE",
+    kIn: ($) => "IN",
     kLock: ($) => "LOCK",
     kLoop: ($) => "LOOP",
     kMethods: ($) => "METHODS",
@@ -508,71 +505,71 @@ module.exports = grammar({
     ),
 
     Escape: ($) =>
-      seq(
-	choice(
-	  seq("\\", "n"),
-	  seq("\\", "t"),
-	  seq("\\", "r"),
-	  seq("\\", "f"),
-	  seq("\\", "\\"),
-	  seq("\\", "'"),
-	  seq("\\", DQUOTE),
-	  seq("\\", OctalDigit, OctalDigit, OctalDigit),
-	),
+    seq(
+      choice(
+	seq("\\", "n"),
+	seq("\\", "t"),
+	seq("\\", "r"),
+	seq("\\", "f"),
+	seq("\\", "\\"),
+	seq("\\", "'"),
+	seq("\\", DQUOTE),
+	seq("\\", OctalDigit, OctalDigit, OctalDigit),
       ),
+    ),
 
     PrintingChar: ($) => choice(Letter, Digit), // OtherChar
 
     CharLiteral: ($) => 
-      seq("'", choice($.PrintingChar, $.Escape, DQUOTE), "'"),
+    seq("'", choice($.PrintingChar, $.Escape, DQUOTE), "'"),
 
     TextLiteral: ($) => 
-      seq(DQUOTE, repeat(choice($.PrintingChar, $.Escape, "'")), DQUOTE),
+    seq(DQUOTE, repeat(choice($.PrintingChar, $.Escape, "'")), DQUOTE),
 
     Id: ($) => token(seq(Letter, repeat(choice(Letter, Digit,"_")))),
 
     Literal: ($) => choice($.Number, $.CharLiteral, $.TextLiteral),
 
     Exp: ($) => 
-      seq(
-	choice("E", "e", "D", "d", "X", "x"),
-	optional(choice("+", "-")),
-	repeat1(Digit),
-      ),
+    seq(
+      choice("E", "e", "D", "d", "X", "x"),
+      optional(choice("+", "-")),
+      repeat1(Digit),
+    ),
 
     OtherChar: ($) =>  
-      choice(
-	" ",
-	"!",
-	"#",
-	"$",
-	"%",
-	"&",
-	"(",
-	")",
-	"*",
-	"+",
-	",",
-	"-",
-	".",
-	"/",
-	":",
-	";",
-	"<",
-	"=",
-	">",
-	"?",
-	"@",
-	"[",
-	"]",
-	"^",
-	"_",
-	"`",
-	"{",
-	"|",
-	"}",
-	// $ExtendedChar,
-      ),
+    choice(
+      " ",
+      "!",
+      "#",
+      "$",
+      "%",
+      "&",
+      "(",
+      ")",
+      "*",
+      "+",
+      ",",
+      "-",
+      ".",
+      "/",
+      ":",
+      ";",
+      "<",
+      "=",
+      ">",
+      "?",
+      "@",
+      "[",
+      "]",
+      "^",
+      "_",
+      "`",
+      "{",
+      "|",
+      "}",
+      // $ExtendedChar,
+    ),
     // ExtendedChar = any char with ISO-Latin-1 code in [8_ 240..8_ 377].
 
     comment: ($) => token(/[(][*]([^*]*[*]+[^)*])*[^*]*[*]+[)]/),

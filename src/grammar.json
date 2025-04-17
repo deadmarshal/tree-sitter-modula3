@@ -62,105 +62,101 @@
       ]
     },
     "Interface": {
-      "type": "FIELD",
-      "name": "interface",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "kInterface"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              },
-              {
-                "type": "STRING",
-                "value": ";"
-              },
-              {
-                "type": "FIELD",
-                "name": "import",
-                "content": {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "Import"
-                  }
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "declaration",
-                "content": {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "Decl"
-                  }
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "kEnd"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              },
-              {
-                "type": "STRING",
-                "value": "."
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "kInterface"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              },
-              {
-                "type": "STRING",
-                "value": "="
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              },
-              {
-                "type": "FIELD",
-                "name": "generic_actual_parameters",
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kInterface"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            },
+            {
+              "type": "FIELD",
+              "name": "import",
+              "content": {
+                "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "GenActls"
+                  "name": "Import"
                 }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "kEnd"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              },
-              {
-                "type": "STRING",
-                "value": "."
               }
-            ]
-          }
-        ]
-      }
+            },
+            {
+              "type": "FIELD",
+              "name": "declaration",
+              "content": {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "Decl"
+                }
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "kEnd"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kInterface"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "FIELD",
+              "name": "generic_actual_parameters",
+              "content": {
+                "type": "SYMBOL",
+                "name": "GenActls"
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "kEnd"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            }
+          ]
+        }
+      ]
     },
     "Module": {
       "type": "FIELD",
@@ -3655,13 +3651,13 @@
       "type": "STRING",
       "value": "IMPORT"
     },
-    "kIn": {
-      "type": "STRING",
-      "value": "IN"
-    },
     "kInterface": {
       "type": "STRING",
       "value": "INTERFACE"
+    },
+    "kIn": {
+      "type": "STRING",
+      "value": "IN"
     },
     "kLock": {
       "type": "STRING",

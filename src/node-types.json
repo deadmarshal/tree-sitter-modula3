@@ -1161,37 +1161,25 @@
             "named": true
           }
         ]
-      },
-      "interface": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "=",
-            "named": false
-          },
-          {
-            "type": "Id",
-            "named": true
-          },
-          {
-            "type": "kEnd",
-            "named": true
-          },
-          {
-            "type": "kInterface",
-            "named": true
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Id",
+          "named": true
+        },
+        {
+          "type": "kEnd",
+          "named": true
+        },
+        {
+          "type": "kInterface",
+          "named": true
+        }
+      ]
     }
   },
   {

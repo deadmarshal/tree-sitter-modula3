@@ -1,0 +1,13 @@
+==================
+Module
+==================
+
+MODULE Something;
+
+END Something.
+
+---
+(Compilation
+ (Module)
+)
+
