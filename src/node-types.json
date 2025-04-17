@@ -247,12 +247,8 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "DQUOTE",
-          "named": true
-        },
         {
           "type": "Escape",
           "named": true
@@ -268,27 +264,52 @@
     "type": "Compilation",
     "named": true,
     "root": true,
-    "fields": {},
+    "fields": {
+      "generic_interface": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "GenInt",
+            "named": true
+          }
+        ]
+      },
+      "generic_module": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "GenMod",
+            "named": true
+          }
+        ]
+      },
+      "interface": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "Interface",
+            "named": true
+          }
+        ]
+      },
+      "module": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "Module",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "GenInt",
-          "named": true
-        },
-        {
-          "type": "GenMod",
-          "named": true
-        },
-        {
-          "type": "Interface",
-          "named": true
-        },
-        {
-          "type": "Module",
-          "named": true
-        },
         {
           "type": "kUnsafe",
           "named": true
@@ -610,21 +631,7 @@
   {
     "type": "Escape",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "DQUOTE",
-          "named": true
-        },
-        {
-          "type": "OctalDigit",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "EvalSt",
@@ -682,35 +689,26 @@
   {
     "type": "Exp",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "Digit",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "Expr",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "E1",
-          "named": true
-        },
-        {
-          "type": "kOr",
-          "named": true
-        }
-      ]
+    "fields": {
+      "expression": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "E1",
+            "named": true
+          },
+          {
+            "type": "kOr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -896,27 +894,52 @@
   {
     "type": "GenInt",
     "named": true,
-    "fields": {},
+    "fields": {
+      "declaration": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "Decl",
+            "named": true
+          }
+        ]
+      },
+      "generic_formal_parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "GenFmls",
+            "named": true
+          }
+        ]
+      },
+      "identifier": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "Id",
+            "named": true
+          }
+        ]
+      },
+      "import_statement": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "Import",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "Decl",
-          "named": true
-        },
-        {
-          "type": "GenFmls",
-          "named": true
-        },
-        {
-          "type": "Id",
-          "named": true
-        },
-        {
-          "type": "Import",
-          "named": true
-        },
         {
           "type": "kEnd",
           "named": true
@@ -935,7 +958,38 @@
   {
     "type": "GenMod",
     "named": true,
-    "fields": {},
+    "fields": {
+      "generic_formal_parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "GenFmls",
+            "named": true
+          }
+        ]
+      },
+      "identifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "Id",
+            "named": true
+          }
+        ]
+      },
+      "import_statement": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "Import",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -945,15 +999,7 @@
           "named": true
         },
         {
-          "type": "GenFmls",
-          "named": true
-        },
-        {
           "type": "Id",
-          "named": true
-        },
-        {
-          "type": "Import",
           "named": true
         },
         {
@@ -985,25 +1031,6 @@
         },
         {
           "type": "S",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "Id",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "Digit",
-          "named": true
-        },
-        {
-          "type": "Letter",
           "named": true
         }
       ]
@@ -1104,36 +1131,67 @@
   {
     "type": "Interface",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "Decl",
-          "named": true
-        },
-        {
-          "type": "GenActls",
-          "named": true
-        },
-        {
-          "type": "Id",
-          "named": true
-        },
-        {
-          "type": "Import",
-          "named": true
-        },
-        {
-          "type": "kEnd",
-          "named": true
-        },
-        {
-          "type": "kInterface",
-          "named": true
-        }
-      ]
+    "fields": {
+      "declaration": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "Decl",
+            "named": true
+          }
+        ]
+      },
+      "generic_actual_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "GenActls",
+            "named": true
+          }
+        ]
+      },
+      "import": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "Import",
+            "named": true
+          }
+        ]
+      },
+      "interface": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "Id",
+            "named": true
+          },
+          {
+            "type": "kEnd",
+            "named": true
+          },
+          {
+            "type": "kInterface",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1265,44 +1323,73 @@
   {
     "type": "Module",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "Block",
-          "named": true
-        },
-        {
-          "type": "GenActls",
-          "named": true
-        },
-        {
-          "type": "Id",
-          "named": true
-        },
-        {
-          "type": "IdList",
-          "named": true
-        },
-        {
-          "type": "Import",
-          "named": true
-        },
-        {
-          "type": "kEnd",
-          "named": true
-        },
-        {
-          "type": "kExports",
-          "named": true
-        },
-        {
-          "type": "kModule",
-          "named": true
-        }
-      ]
+    "fields": {
+      "generic_actual_parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "GenActls",
+            "named": true
+          }
+        ]
+      },
+      "identifier": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "Id",
+            "named": true
+          }
+        ]
+      },
+      "module": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": "Block",
+            "named": true
+          },
+          {
+            "type": "Id",
+            "named": true
+          },
+          {
+            "type": "IdList",
+            "named": true
+          },
+          {
+            "type": "Import",
+            "named": true
+          },
+          {
+            "type": "kEnd",
+            "named": true
+          },
+          {
+            "type": "kExports",
+            "named": true
+          },
+          {
+            "type": "kModule",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1329,19 +1416,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "Digit",
-          "named": true
-        },
-        {
           "type": "Exp",
-          "named": true
-        },
-        {
-          "type": "HexDigit",
           "named": true
         }
       ]
@@ -1462,21 +1541,7 @@
   {
     "type": "PrintingChar",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "Digit",
-          "named": true
-        },
-        {
-          "type": "Letter",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "ProcedureHead",
@@ -2006,12 +2071,8 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "DQUOTE",
-          "named": true
-        },
         {
           "type": "Escape",
           "named": true
@@ -2268,6 +2329,10 @@
     }
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "#",
     "named": false
   },
@@ -2360,27 +2425,11 @@
     "named": false
   },
   {
-    "type": "DQUOTE",
-    "named": true
-  },
-  {
-    "type": "Digit",
-    "named": true
-  },
-  {
     "type": "E",
     "named": false
   },
   {
-    "type": "HexDigit",
-    "named": true
-  },
-  {
-    "type": "Letter",
-    "named": true
-  },
-  {
-    "type": "OctalDigit",
+    "type": "Id",
     "named": true
   },
   {

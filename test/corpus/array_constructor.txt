@@ -1,0 +1,14 @@
+==================
+Array Constructors
+==================
+
+ARRAY [1..10] OF TEXT{"John", "Suzie", "Helen", "", ..};
+
+---
+(Compilation
+  (kArray)
+  (ArrayType)
+  ("{")
+  ()
+  ("}")
+)

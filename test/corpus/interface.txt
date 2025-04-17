@@ -1,0 +1,16 @@
+==================
+Interface
+==================
+
+INTERFACE Something;
+
+END Something.
+
+---
+(Compilation
+ interface: (kInterface)
+ (Id)
+ (kEnd)
+ (Id)
+ (".")
+ )
