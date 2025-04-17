@@ -8,6 +8,10 @@ END Something.
 
 ---
 (Compilation
- (Module)
+ (kModule)
+ (Id)
+ (kEnd)
+ (Id)
+ (".")
 )
 

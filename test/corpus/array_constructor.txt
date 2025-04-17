@@ -2,13 +2,27 @@
 Array Constructors
 ==================
 
-ARRAY [1..10] OF TEXT{"John", "Suzie", "Helen", "", ..};
+MODULE Main;
+
+VAR
+  A := ARRAY [1..10] OF TEXT{"John", "Suzie", "Helen", "", ..};
+
+BEGIN
+
+END Main.
 
 ---
 (Compilation
-  (kArray)
+  (kModule)
+  (Id)
+  (kVar)
+  (Id)
+  (":=")
   (ArrayType)
-  ("{")
-  ()
-  ("}")
+  (ArrayCons)
+  (kBegin)
+  (kEnd)
+  (Id)
+  (".")
 )
+

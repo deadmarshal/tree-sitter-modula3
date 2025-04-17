@@ -8,8 +8,9 @@ END Something.
 
 ---
 (Compilation
- interface: (kInterface)
+ (kInterface)
  (Id)
+ (";")
  (kEnd)
  (Id)
  (".")
