@@ -1,0 +1,33 @@
+==================
+Basic Procedure
+==================
+
+MODULE Main;
+
+PROCEDURE Hello() =
+BEGIN
+END Hello;
+
+BEGIN
+
+END Main.
+
+---
+(Compilation
+ (Module
+  (kModule)
+  (Id)
+  (Block
+   (Decl
+    (ProcedureHead
+     (kProcedure)
+     (Id)
+     (Signature))
+    (Block
+     (kBegin)
+     (kEnd))
+    (Id))
+   (kBegin)
+   (kEnd))
+  (Id)))
+

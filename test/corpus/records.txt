@@ -1,0 +1,30 @@
+==================
+Empty Record
+==================
+
+MODULE Something;
+
+TYPE
+  MyRecord = RECORD END;
+
+BEGIN
+END Something.
+
+---
+(Compilation
+ (Module
+  (kModule)
+  (Id)
+  (Block
+   (Decl
+    (kType)
+    (TypeDecl
+     (Id)
+     (Type
+      (RecordType
+       (kRecord)
+       (kEnd)))))
+   (kBegin)
+   (kEnd))
+  (Id)))
+

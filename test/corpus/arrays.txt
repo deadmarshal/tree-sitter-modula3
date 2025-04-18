@@ -5,7 +5,7 @@ Array Constructors
 MODULE Main;
 
 VAR
-  A:ARRAY [1..10] OF TEXT;
+  A:ARRAY [1 .. 10] OF TEXT;
 
 BEGIN
 
@@ -26,7 +26,7 @@ END Main.
       (SubrangeType
        (ConstExpr
 	(E8
-	 (Number))
+	 (Number)))
 	(ConstExpr
 	 (E8
 	  (Number)))
@@ -35,5 +35,5 @@ END Main.
 	(Id)))))
     (kBegin)
     (kEnd))
-   (Id))))
+   (Id)))
  

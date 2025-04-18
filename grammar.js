@@ -16,7 +16,6 @@
     [$.SetElt, $.RecordElt, $.ArrayCons],
     [$.Methods],
     [$.Overrides],
-    [$.Signature],
   ],
 
   rules: {
@@ -114,13 +113,13 @@
     seq($.IdList, choice(seq(":", $.Type), seq(":=", $.Expr))),
     ProcedureHead: ($) => seq($.kProcedure, $.Id, $.Signature),
     Signature: ($) =>
-    seq(
+    prec.left(seq(
       "(",
       optional($.Formals),
       ")",
       optional(seq(":", $.Type)),
       optional(seq($.kRaises, $.Raises)),
-    ),
+    )),
     Formals: ($) =>
     seq(
       $.Formal,
@@ -300,7 +299,7 @@
       $.kEnd,
     ),
     ProcedureType: ($) => seq($.kProcedure, $.Signature),
-    RecordType: ($) => seq($.kRecord, $.Fields, $.kEnd),
+    RecordType: ($) => seq($.kRecord, optional($.Fields), $.kEnd),
     RefType: ($) =>
     seq(optional($.kUntraced), optional($.Brand), $.kRef, $.Type),
     SetType: ($) => seq($.kSet, $.kOf, $.Type),
