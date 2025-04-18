@@ -1,0 +1,37 @@
+==================
+Simple Interface
+==================
+
+INTERFACE Something;
+
+END Something.
+
+---
+(Compilation
+ (Interface
+  (kInterface)
+  (Id)
+  (kEnd)
+  (Id)))
+
+==================
+Generic Interface
+==================
+
+GENERIC INTERFACE Something(Elem);
+
+END Something.
+
+---
+(Compilation
+ (GenInt
+  (kGeneric)
+  (kInterface)
+  (Id)
+  (GenFmls
+   (IdList
+    (Id)))
+  (kEnd)
+  (Id))
+)
+

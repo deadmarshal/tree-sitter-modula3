@@ -9,53 +9,37 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
+              "type": "SYMBOL",
+              "name": "kUnsafe"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "kUnsafe"
+                  "name": "Interface"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "FIELD",
-                      "name": "interface",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "Interface"
-                      }
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "module",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "Module"
-                      }
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "generic_interface",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "GenInt"
-                      }
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "generic_module",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "GenMod"
-                      }
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "Module"
                 }
               ]
             },
             {
-              "type": "BLANK"
+              "type": "SYMBOL",
+              "name": "GenInt"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "GenMod"
             }
           ]
         }
@@ -80,25 +64,17 @@
               "value": ";"
             },
             {
-              "type": "FIELD",
-              "name": "import",
+              "type": "REPEAT",
               "content": {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Import"
-                }
+                "type": "SYMBOL",
+                "name": "Import"
               }
             },
             {
-              "type": "FIELD",
-              "name": "declaration",
+              "type": "REPEAT",
               "content": {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Decl"
-                }
+                "type": "SYMBOL",
+                "name": "Decl"
               }
             },
             {
@@ -135,12 +111,8 @@
               "name": "Id"
             },
             {
-              "type": "FIELD",
-              "name": "generic_actual_parameters",
-              "content": {
-                "type": "SYMBOL",
-                "name": "GenActls"
-              }
+              "type": "SYMBOL",
+              "name": "GenActls"
             },
             {
               "type": "SYMBOL",
@@ -159,148 +131,124 @@
       ]
     },
     "Module": {
-      "type": "FIELD",
-      "name": "module",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kModule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "kExports"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "IdList"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
                 "type": "SYMBOL",
-                "name": "kModule"
-              },
-              {
-                "type": "FIELD",
-                "name": "identifier",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Id"
-                }
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "kExports"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "IdList"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              },
-              {
-                "type": "STRING",
-                "value": ";"
-              },
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Import"
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Block"
-              },
-              {
-                "type": "FIELD",
-                "name": "identifier",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Id"
-                }
-              },
-              {
-                "type": "STRING",
-                "value": "."
+                "name": "Import"
               }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "kModule"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "kExports"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "IdList"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              },
-              {
-                "type": "STRING",
-                "value": "="
-              },
-              {
-                "type": "FIELD",
-                "name": "identifier",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Id"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kModule"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "kExports"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "IdList"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
                 }
-              },
-              {
-                "type": "FIELD",
-                "name": "generic_actual_parameters",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "GenActls"
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "kEnd"
-              },
-              {
-                "type": "FIELD",
-                "name": "identifier",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "Id"
-                }
-              },
-              {
-                "type": "STRING",
-                "value": "."
-              }
-            ]
-          }
-        ]
-      }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "GenActls"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "kEnd"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "Id"
+            },
+            {
+              "type": "STRING",
+              "value": "."
+            }
+          ]
+        }
+      ]
     },
     "GenInt": {
       "type": "SEQ",
@@ -314,45 +262,29 @@
           "name": "kInterface"
         },
         {
-          "type": "FIELD",
-          "name": "identifier",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Id"
-          }
+          "type": "SYMBOL",
+          "name": "Id"
         },
         {
-          "type": "FIELD",
-          "name": "generic_formal_parameters",
-          "content": {
-            "type": "SYMBOL",
-            "name": "GenFmls"
-          }
+          "type": "SYMBOL",
+          "name": "GenFmls"
         },
         {
           "type": "STRING",
           "value": ";"
         },
         {
-          "type": "FIELD",
-          "name": "import_statement",
+          "type": "REPEAT",
           "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "Import"
-            }
+            "type": "SYMBOL",
+            "name": "Import"
           }
         },
         {
-          "type": "FIELD",
-          "name": "declaration",
+          "type": "REPEAT",
           "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "Decl"
-            }
+            "type": "SYMBOL",
+            "name": "Decl"
           }
         },
         {
@@ -360,12 +292,8 @@
           "name": "kEnd"
         },
         {
-          "type": "FIELD",
-          "name": "identifier",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Id"
-          }
+          "type": "SYMBOL",
+          "name": "Id"
         },
         {
           "type": "STRING",
@@ -389,26 +317,18 @@
           "name": "Id"
         },
         {
-          "type": "FIELD",
-          "name": "generic_formal_parameters",
-          "content": {
-            "type": "SYMBOL",
-            "name": "GenFmls"
-          }
+          "type": "SYMBOL",
+          "name": "GenFmls"
         },
         {
           "type": "STRING",
           "value": ";"
         },
         {
-          "type": "FIELD",
-          "name": "import_statement",
+          "type": "REPEAT",
           "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "Import"
-            }
+            "type": "SYMBOL",
+            "name": "Import"
           }
         },
         {
@@ -416,12 +336,8 @@
           "name": "Block"
         },
         {
-          "type": "FIELD",
-          "name": "identifier",
-          "content": {
-            "type": "SYMBOL",
-            "name": "Id"
-          }
+          "type": "SYMBOL",
+          "name": "Id"
         },
         {
           "type": "STRING",
@@ -520,8 +436,16 @@
           "name": "kBegin"
         },
         {
-          "type": "SYMBOL",
-          "name": "S"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "S"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -1013,96 +937,97 @@
       ]
     },
     "Formals": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "Formal"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ";"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Formal"
-                }
-              ]
-            }
-          },
-          {
-            "type": "CHOICE",
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Formal"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
             "members": [
               {
                 "type": "STRING",
                 "value": ";"
               },
               {
-                "type": "BLANK"
+                "type": "SYMBOL",
+                "name": "Formal"
               }
             ]
           }
-        ]
-      }
-    },
-    "Formal": {
-      "type": "SEQ",
-      "members": [
+        },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "Mode"
+              "type": "STRING",
+              "value": ";"
             },
             {
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "IdList"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ":"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Type"
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ":="
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "ConstExpr"
-                }
-              ]
-            }
-          ]
         }
       ]
+    },
+    "Formal": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "Mode"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "IdList"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "Type"
+                  }
+                ]
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ":="
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ConstExpr"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "Mode": {
       "type": "CHOICE",
@@ -1686,7 +1611,7 @@
       ]
     },
     "ReturnSt": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 0,
       "content": {
         "type": "SEQ",
@@ -2544,8 +2469,12 @@
           "value": ".."
         },
         {
-          "type": "SYMBOL",
-          "name": "ConstExpr"
+          "type": "PREC_RIGHT",
+          "value": 0,
+          "content": {
+            "type": "SYMBOL",
+            "name": "ConstExpr"
+          }
         },
         {
           "type": "STRING",
@@ -2783,37 +2712,33 @@
       "name": "Expr"
     },
     "Expr": {
-      "type": "FIELD",
-      "name": "expression",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "E1"
-          },
-          {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PREC_LEFT",
-                  "value": 1,
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "kOr"
-                  }
-                },
-                {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "E1"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PREC_LEFT",
+                "value": 1,
+                "content": {
                   "type": "SYMBOL",
-                  "name": "E1"
+                  "name": "kOr"
                 }
-              ]
-            }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "E1"
+              }
+            ]
           }
-        ]
-      }
+        }
+      ]
     },
     "E1": {
       "type": "SEQ",
@@ -2895,29 +2820,33 @@
       ]
     },
     "E4": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "E5"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "Addop"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "E5"
-              }
-            ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "E5"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "Addop"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "E5"
+                }
+              ]
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     "E5": {
       "type": "SEQ",
@@ -2945,12 +2874,12 @@
       ]
     },
     "E6": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PREC_LEFT",
-          "value": 7,
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 7,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "CHOICE",
             "members": [
               {
@@ -2970,34 +2899,38 @@
                 "type": "BLANK"
               }
             ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "E7"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "E7"
-        }
-      ]
+        ]
+      }
     },
     "E7": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "E8"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "Selector"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "E8"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "Selector"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "E8": {
       "type": "CHOICE",
@@ -3470,20 +3403,25 @@
           "name": "Id"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ","
-              },
-              {
-                "type": "SYMBOL",
-                "name": "Id"
-              }
-            ]
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Id"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -4488,9 +4426,6 @@
       "ArrayCons"
     ],
     [
-      "Formals"
-    ],
-    [
       "Methods"
     ],
     [
@@ -4498,12 +4433,6 @@
     ],
     [
       "Signature"
-    ],
-    [
-      "E4"
-    ],
-    [
-      "E7"
     ],
     [
       "Exp"

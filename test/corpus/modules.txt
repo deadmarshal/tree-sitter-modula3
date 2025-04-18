@@ -4,15 +4,17 @@ Module
 
 MODULE Something;
 
+BEGIN
 END Something.
 
 ---
 (Compilation
- (kModule)
- (Id)
- (";")
- (kEnd)
- (Id)
- (".")
+ (Module
+  (kModule)
+  (Id)
+  (Block
+   (kBegin)
+   (kEnd))
+  (Id))
 )
 

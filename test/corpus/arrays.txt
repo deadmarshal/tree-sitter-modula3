@@ -1,0 +1,39 @@
+==================
+Array Constructors
+==================
+
+MODULE Main;
+
+VAR
+  A:ARRAY [1..10] OF TEXT;
+
+BEGIN
+
+END Main.
+
+---
+(Compilation
+ (Module
+  (kModule)
+  (Id)
+  (Block
+   (Decl
+    (VariableDecl
+     (IdList
+      (Id))
+     (ArrayType
+      (kArray)
+      (SubrangeType
+       (ConstExpr
+	(E8
+	 (Number))
+	(ConstExpr
+	 (E8
+	  (Number)))
+	(kOf)
+	(Type)
+	(Id)))))
+    (kBegin)
+    (kEnd))
+   (Id))))
+ 

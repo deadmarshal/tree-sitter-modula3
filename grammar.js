@@ -3,23 +3,20 @@
 // Operator Precedence: https://modula3.elegosoft.com/cm3/doc/tutorial/m3/m3_56.html
 
 // Token Productions:
-DQUOTE = '"',
-HexDigit = /[0-9a-fA-F]+/,
-Digit = /[0-9]/,
-OctalDigit = /[0-7]/,
-Letter = /[a-zA-Z]/,
+(DQUOTE = '"'),
+(HexDigit = /[0-9a-fA-F]+/),
+(Digit = /[0-9]/),
+(OctalDigit = /[0-7]/),
+(Letter = /[a-zA-Z]/),
 
-module.exports = grammar({
+(module.exports = grammar({
   name: "Modula3",
   extras: ($) => [$.comment, /\s/],
   conflicts: ($) => [
     [$.SetElt, $.RecordElt, $.ArrayCons],
-    [$.Formals],
     [$.Methods],
     [$.Overrides],
     [$.Signature],
-    [$.E4],
-    [$.E7],
     [$.Exp],
   ],
 
@@ -27,17 +24,8 @@ module.exports = grammar({
     // Compilation Unit Productions:
     Compilation: ($) =>
     seq(
-      optional(
-        seq(
-          $.kUnsafe,
-          choice(
-            field("interface", $.Interface),
-            field("module", $.Module),
-            field("generic_interface", $.GenInt),
-            field("generic_module", $.GenMod),
-          ),
-        ),
-      ),
+      optional($.kUnsafe),
+      choice(choice($.Interface, $.Module), $.GenInt, $.GenMod),
     ),
     Interface: ($) =>
     choice(
@@ -45,62 +33,50 @@ module.exports = grammar({
         $.kInterface,
         $.Id,
         ";",
-        field("import", repeat($.Import)),
-        field("declaration", repeat($.Decl)),
+        repeat($.Import),
+        repeat($.Decl),
         $.kEnd,
+        $.Id,
+        ".",
+      ),
+      seq($.kInterface, $.Id, "=", $.Id, $.GenActls, $.kEnd, $.Id, "."),
+    ),
+
+    Module: ($) =>
+    choice(
+      seq(
+        $.kModule,
+        $.Id,
+        optional(seq($.kExports, $.IdList)),
+        ";",
+        repeat($.Import),
+        $.Block,
         $.Id,
         ".",
       ),
       seq(
-        $.kInterface,
+        $.kModule,
         $.Id,
+        optional(seq($.kExports, $.IdList)),
         "=",
         $.Id,
-        field("generic_actual_parameters", $.GenActls),
+        $.GenActls,
         $.kEnd,
         $.Id,
         ".",
-      ),
-    ),
-
-    Module: ($) =>
-    field(
-      "module",
-      choice(
-        seq(
-          $.kModule,
-          field("identifier", $.Id),
-          optional(seq($.kExports, $.IdList)),
-          ";",
-          repeat($.Import),
-          $.Block,
-          field("identifier", $.Id),
-          ".",
-        ),
-        seq(
-          $.kModule,
-          $.Id,
-          optional(seq($.kExports, $.IdList)),
-          "=",
-          field("identifier", $.Id),
-          field("generic_actual_parameters", $.GenActls),
-          $.kEnd,
-          field("identifier", $.Id),
-          ".",
-        ),
       ),
     ),
     GenInt: ($) =>
     seq(
       $.kGeneric,
       $.kInterface,
-      field("identifier", $.Id),
-      field("generic_formal_parameters", $.GenFmls),
+      $.Id,
+      $.GenFmls,
       ";",
-      field("import_statement", repeat($.Import)),
-      field("declaration", repeat($.Decl)),
+      repeat($.Import),
+      repeat($.Decl),
       $.kEnd,
-      field("identifier", $.Id),
+      $.Id,
       ".",
     ),
     GenMod: ($) =>
@@ -108,18 +84,18 @@ module.exports = grammar({
       $.kGeneric,
       $.kModule,
       $.Id,
-      field("generic_formal_parameters", $.GenFmls),
+      $.GenFmls,
       ";",
-      field("import_statement", repeat($.Import)),
+      repeat($.Import),
       $.Block,
-      field("identifier", $.Id),
+      $.Id,
       ".",
     ),
     Import: ($) => choice($.AsImport, $.FromImport),
     AsImport: ($) =>
     seq($.kImport, $.ImportItem, repeat(seq(",", $.ImportItem)), ";"),
     FromImport: ($) => seq($.kFrom, $.Id, $.kImport, $.IdList, ";"),
-    Block: ($) => seq(optional($.Decl), $.kBegin, $.S, $.kEnd),
+    Block: ($) => seq(optional($.Decl), $.kBegin, optional($.S), $.kEnd),
     Decl: ($) =>
     choice(
       seq($.kConst, repeat(seq($.ConstDecl, ";"))),
@@ -147,13 +123,16 @@ module.exports = grammar({
       optional(seq($.kRaises, $.Raises)),
     ),
     Formals: ($) =>
-    repeat1(seq($.Formal, repeat(seq(";", $.Formal)), optional(";"))), // make this optional on call site
-    Formal: ($) =>
     seq(
+      $.Formal,
+      repeat(seq(";", $.Formal)), optional(";")
+    ),
+    Formal: ($) =>
+    prec.left(seq(
       optional($.Mode),
       $.IdList,
       choice(seq(":", $.Type), seq(":=", $.ConstExpr)),
-    ),
+    )),
     Mode: ($) => choice($.kValue, $.kVar, $.kReadonly),
     Raises: ($) =>
     choice(
@@ -183,7 +162,7 @@ module.exports = grammar({
       $.WhileSt,
       $.WithSt,
     ),
-    S: ($) => repeat1(seq($.Stmt, optional(seq(";", $.Stmt)), optional(";"))), // make this optional on call site
+    S: ($) => repeat1(seq($.Stmt, optional(seq(";", $.Stmt)), optional(";"))),
     AssignSt: ($) => seq($.Expr, ":=", $.Expr),
     CallSt: ($) =>
     seq(
@@ -232,7 +211,7 @@ module.exports = grammar({
     RaiseSt: ($) =>
     prec.left(seq($.kRaise, $.QualId, optional(seq("(", $.Expr, ")")))),
     RepeatSt: ($) => seq($.kRepeat, $.S, $.kUntil, $.Expr),
-    ReturnSt: ($) => prec.right(seq($.kReturn, optional($.Expr))),
+    ReturnSt: ($) => prec.left(seq($.kReturn, optional($.Expr))),
     TCaseSt: ($) =>
     seq(
       $.kTypecase,
@@ -256,7 +235,14 @@ module.exports = grammar({
     TryFinSt: ($) => seq($.kTry, $.S, $.kFinally, $.S, $.kEnd),
     WhileSt: ($) => seq($.kWhile, $.Expr, $.kDo, $.S, $.kEnd),
     WithSt: ($) =>
-    seq($.kWith, $.Binding, repeat(seq(",", $.Binding)), $.kDo, $.S, $.kEnd),
+    seq(
+      $.kWith,
+      $.Binding,
+      repeat(seq(",", $.Binding)),
+      $.kDo,
+      $.S,
+      $.kEnd,
+    ),
     Case: ($) => seq($.Labels, repeat(seq(",", $.Labels)), "=>", $.S),
     Labels: ($) => seq($.ConstExpr, optional(seq("..", $.ConstExpr))),
     Handler: ($) =>
@@ -309,7 +295,7 @@ module.exports = grammar({
       optional(choice($.TypeName, $.ObjectType)),
       optional($.Brand),
       $.kObject,
-      optional($.Fields), // make this optional, and make fields repeat1
+      optional($.Fields),
       optional(seq($.kMethods, $.Methods)),
       optional(seq($.kOverrides, $.Overrides)),
       $.kEnd,
@@ -319,30 +305,30 @@ module.exports = grammar({
     RefType: ($) =>
     seq(optional($.kUntraced), optional($.Brand), $.kRef, $.Type),
     SetType: ($) => seq($.kSet, $.kOf, $.Type),
-    SubrangeType: ($) => seq("[", $.ConstExpr, "..", $.ConstExpr, "]"),
+    SubrangeType: ($) =>
+    seq("[", $.ConstExpr, "..", prec.right($.ConstExpr), "]"),
     Brand: ($) => seq($.kBranded, $.ConstExpr),
     Fields: ($) =>
-    prec.left(seq($.Field, repeat(seq(";", $.Field)), optional(";"))), // BUGGY?, make this optional in methods
+    prec.left(seq($.Field, repeat(seq(";", $.Field)), optional(";"))),
     Field: ($) =>
     seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))), // BUGGY?
     Methods: ($) =>
-    repeat1(seq($.Method, repeat(seq(";", $.Method)), optional(";"))), // make this optional in object
+    repeat1(seq($.Method, repeat(seq(";", $.Method)), optional(";"))),
     Method: ($) => seq($.Id, $.Signature, optional(seq(":=", $.ConstExpr))),
     Overrides: ($) =>
-    repeat1(seq($.Override, repeat(seq(";", $.Override)), optional(";"))), // make this optional in object
+    repeat1(seq($.Override, repeat(seq(";", $.Override)), optional(";"))),
     Override: ($) => seq($.Id, ":=", $.ConstExpr),
 
     // Expression Productions:
     ConstExpr: ($) => $.Expr,
-    Expr: ($) =>
-    field("expression", seq($.E1, repeat1(seq(prec.left(1, $.kOr), $.E1)))),
+    Expr: ($) => seq($.E1, repeat1(seq(prec.left(1, $.kOr), $.E1))),
     E1: ($) => seq($.E2, repeat1(seq(prec.left(2, $.kAnd), $.E2))),
     E2: ($) => seq(prec.left(3, optional($.kNot)), $.E3),
     E3: ($) => seq($.E4, repeat1(seq($.Relop, $.E4))),
-    E4: ($) => seq($.E5, repeat1(seq($.Addop, $.E5))),
+    E4: ($) => prec.left(seq($.E5, repeat1(seq($.Addop, $.E5)))),
     E5: ($) => seq($.E6, repeat1(seq($.Mulop, $.E6))),
-    E6: ($) => seq(prec.left(7, optional(choice("+", "-"))), $.E7),
-    E7: ($) => seq($.E8, optional($.Selector)),
+    E6: ($) => prec.left(7, seq(optional(choice("+", "-")), $.E7)),
+    E7: ($) => prec.left(seq($.E8, optional($.Selector))),
     E8: ($) =>
     choice(
       prec.left(1, $.Id),
@@ -358,12 +344,16 @@ module.exports = grammar({
     Mulop: ($) => prec.left(6, choice("*", "/", $.kDiv, $.kMod)),
     Selector: ($) =>
     choice(
-      prec.left(8, "^"),
-      prec.left(10, seq(".", $.Id)),
-      prec.left(9, seq("[", $.Expr, optional(seq(",", $.Expr)), "]")),
+      prec.left(8, "^"), // deref
+      prec.left(10, seq(".", $.Id)), // record field
+      prec.left(9, seq("[", $.Expr, optional(seq(",", $.Expr)), "]")), // array indexing
       prec.left(
         9,
-        seq("(", optional(seq($.Actual, optional(seq(",", $.Actual)))), ")"),
+        seq(
+          "(",
+          optional(seq($.Actual, optional(seq(",", $.Actual)))),
+          ")", // procedure call
+        ),
       ),
     ),
 
@@ -372,7 +362,11 @@ module.exports = grammar({
       $.Type,
       prec.left(
         9,
-        seq("{", optional(choice($.SetCons, $.RecordCons, $.ArrayCons)), "}"),
+        seq(
+          "{",
+          optional(choice($.SetCons, $.RecordCons, $.ArrayCons)),
+          "}",
+        ),
       ),
     ),
     SetCons: ($) => seq($.SetElt, repeat(seq(",", $.SetElt))),
@@ -383,7 +377,7 @@ module.exports = grammar({
     seq($.Expr, repeat(seq(",", $.Expr)), optional(seq(",", ".."))),
 
     // Miscellaneous Productions:
-    IdList: ($) => seq($.Id, repeat1(seq(",", $.Id))),
+    IdList: ($) => seq($.Id, optional(seq(",", $.Id))),
     QualId: ($) => prec.left(2, seq($.Id, optional(seq(".", $.Id)))),
     TypeName: ($) => choice($.QualId, $.kRoot, seq($.kUntraced, $.kRoot)),
 
@@ -498,46 +492,46 @@ module.exports = grammar({
     Number: ($) =>
     prec.left(
       choice(
-	repeat1(Digit),
-	seq(repeat1(Digit), "_", repeat1(HexDigit)),
-	seq(repeat1(Digit), ".", repeat1(Digit), optional($.Exp)),
+        repeat1(Digit),
+        seq(repeat1(Digit), "_", repeat1(HexDigit)),
+        seq(repeat1(Digit), ".", repeat1(Digit), optional($.Exp)),
       ),
     ),
 
     Escape: ($) =>
     seq(
       choice(
-	seq("\\", "n"),
-	seq("\\", "t"),
-	seq("\\", "r"),
-	seq("\\", "f"),
-	seq("\\", "\\"),
-	seq("\\", "'"),
-	seq("\\", DQUOTE),
-	seq("\\", OctalDigit, OctalDigit, OctalDigit),
+        seq("\\", "n"),
+        seq("\\", "t"),
+        seq("\\", "r"),
+        seq("\\", "f"),
+        seq("\\", "\\"),
+        seq("\\", "'"),
+        seq("\\", DQUOTE),
+        seq("\\", OctalDigit, OctalDigit, OctalDigit),
       ),
     ),
 
     PrintingChar: ($) => choice(Letter, Digit), // OtherChar
 
-    CharLiteral: ($) => 
+    CharLiteral: ($) =>
     seq("'", choice($.PrintingChar, $.Escape, DQUOTE), "'"),
 
-    TextLiteral: ($) => 
+    TextLiteral: ($) =>
     seq(DQUOTE, repeat(choice($.PrintingChar, $.Escape, "'")), DQUOTE),
 
-    Id: ($) => token(seq(Letter, repeat(choice(Letter, Digit,"_")))),
+    Id: ($) => token(seq(Letter, repeat(choice(Letter, Digit, "_")))),
 
     Literal: ($) => choice($.Number, $.CharLiteral, $.TextLiteral),
 
-    Exp: ($) => 
+    Exp: ($) =>
     seq(
       choice("E", "e", "D", "d", "X", "x"),
       optional(choice("+", "-")),
       repeat1(Digit),
     ),
 
-    OtherChar: ($) =>  
+    OtherChar: ($) =>
     choice(
       " ",
       "!",
@@ -574,5 +568,5 @@ module.exports = grammar({
 
     comment: ($) => token(/[(][*]([^*]*[*]+[^)*])*[^*]*[*]+[)]/),
   },
-});
+}));
 
