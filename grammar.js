@@ -17,7 +17,6 @@
     [$.Methods],
     [$.Overrides],
     [$.Signature],
-    [$.Exp],
   ],
 
   rules: {
@@ -525,11 +524,11 @@
     Literal: ($) => choice($.Number, $.CharLiteral, $.TextLiteral),
 
     Exp: ($) =>
-    seq(
+    prec.left(seq(
       choice("E", "e", "D", "d", "X", "x"),
       optional(choice("+", "-")),
       repeat1(Digit),
-    ),
+    )),
 
     OtherChar: ($) =>
     choice(
