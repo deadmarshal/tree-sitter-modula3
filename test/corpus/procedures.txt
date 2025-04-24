@@ -1,5 +1,5 @@
 ==================
-Basic Procedure
+Empty Procedure
 ==================
 
 MODULE Main;

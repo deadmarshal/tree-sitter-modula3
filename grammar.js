@@ -279,10 +279,11 @@
       seq("(", $.Type, ")"),
     ),
 
+    OrdinalType: ($) => choice($.SubrangeType,$.EnumType,$.QualId),
     ArrayType: ($) =>
     seq(
       $.kArray,
-      optional(seq($.Type, repeat(seq(",", $.Type)))),
+      optional(seq($.OrdinalType,repeat(seq(",",$.OrdinalType)))),
       $.kOf,
       $.Type,
     ),
@@ -309,7 +310,8 @@
     Fields: ($) =>
     prec.left(seq($.Field, repeat(seq(";", $.Field)), optional(";"))),
     Field: ($) =>
-    seq($.IdList, choice(seq(":", $.Type), seq(":=", $.ConstExpr))), // BUGGY?
+    seq($.IdList, choice(seq(":", $.Type),
+			 seq(":", $.Type, ":=", $.ConstExpr))),
     Methods: ($) =>
     repeat1(seq($.Method, repeat(seq(";", $.Method)), optional(";"))),
     Method: ($) => seq($.Id, $.Signature, optional(seq(":=", $.ConstExpr))),

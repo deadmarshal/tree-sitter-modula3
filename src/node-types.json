@@ -51,6 +51,10 @@
       "required": true,
       "types": [
         {
+          "type": "OrdinalType",
+          "named": true
+        },
+        {
           "type": "Type",
           "named": true
         },
@@ -1338,6 +1342,29 @@
         },
         {
           "type": "kOverrides",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "OrdinalType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "EnumType",
+          "named": true
+        },
+        {
+          "type": "QualId",
+          "named": true
+        },
+        {
+          "type": "SubrangeType",
           "named": true
         }
       ]

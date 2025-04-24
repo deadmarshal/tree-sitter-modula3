@@ -1,0 +1,113 @@
+==================
+Empty Record
+==================
+
+MODULE Something;
+
+TYPE
+  MyRecord = RECORD END;
+
+BEGIN
+END Something.
+
+---
+(Compilation
+ (Module
+  (kModule)
+  (Id)
+  (Block
+   (Decl
+    (kType)
+    (TypeDecl
+     (Id)
+     (Type
+      (RecordType
+       (kRecord)
+       (kEnd)))))
+   (kBegin)
+   (kEnd))
+  (Id)))
+
+==================
+Record with Fields
+==================
+
+MODULE Something;
+
+TYPE
+  MyRecord = RECORD
+    A:INTEGER;
+    B:CARDINAL;
+    C:LONGINT := 16723;
+    Arr:REF ARRAY OF INTEGER := NIL;
+  END;
+
+BEGIN
+END Something.
+
+---
+(Compilation
+ (Module
+  (kModule)
+  (Id)
+  (Block
+   (Decl
+    (kType)
+    (TypeDecl
+     (Id)
+     (Type
+      (RecordType
+       (kRecord)
+       (Fields
+	; A:INTEGER;
+	(Field
+	 (IdList
+	  (Id))
+	 (Type
+	  (TypeName
+	   (QualId
+	    (Id)))))
+	; B:CARDINAL;
+	(Field
+	 (IdList
+	  (Id))
+	 (Type
+	  (TypeName
+	   (QualId
+	    (Id)))))
+	; C:LONGINT := 16723;
+	(Field
+	 (IdList
+	  (Id))
+	 (Type
+	  (TypeName
+	   (QualId
+	    (Id))))
+	 (ConstExpr
+	  (Expr
+	   (E8
+	    (Id)))))
+        ; Arr:REF ARRAY OF INTEGER := NIL;
+	(Field
+	 (IdList
+	  (Id))
+	 (Type
+	  (RefType
+	   (kRef)
+	   (Type
+	    (ArrayType
+	     (kArray)
+	     (kOf)
+	     (Type
+	      (TypeName
+	       (QualId
+		(Id))))))))
+	 (":=")
+	 (ConstExpr
+	  (E8
+	   (Id))))))
+      (kEnd))))
+   (kBegin)
+   (kEnd))
+  (Id)))
+

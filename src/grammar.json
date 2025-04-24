@@ -2177,6 +2177,23 @@
         }
       ]
     },
+    "OrdinalType": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "SubrangeType"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "EnumType"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "QualId"
+        }
+      ]
+    },
     "ArrayType": {
       "type": "SEQ",
       "members": [
@@ -2192,7 +2209,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "Type"
+                  "name": "OrdinalType"
                 },
                 {
                   "type": "REPEAT",
@@ -2205,7 +2222,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "Type"
+                        "name": "OrdinalType"
                       }
                     ]
                   }
@@ -2574,6 +2591,14 @@
             {
               "type": "SEQ",
               "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "Type"
+                },
                 {
                   "type": "STRING",
                   "value": ":="
